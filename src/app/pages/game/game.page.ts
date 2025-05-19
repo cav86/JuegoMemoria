@@ -91,6 +91,8 @@ export class GamePage implements OnInit {
     });
 
     alert(`¡Ganaste! Tiempo: ${this.tiempo} segundos`);
-    this.router.navigate(['/records']);
+    this.router.navigate(['/records'], {
+      queryParams: { dificultad: this.nivel }
+    });
   }
 }

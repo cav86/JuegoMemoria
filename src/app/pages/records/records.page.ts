@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { SupabaseService } from 'src/app/services/supabase.service';
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
   selector: 'app-records',
@@ -9,11 +10,19 @@ import { SupabaseService } from 'src/app/services/supabase.service';
 })
 export class RecordsPage implements OnInit {
   resultados: any[] = [];
+  dificultad: string = '';
 
-  constructor(private supabase: SupabaseService) {}
+  constructor(
+    private supabase: SupabaseService,
+    private route: ActivatedRoute,
+    private router: Router
+  ) {}
 
   async ngOnInit() {
-    await this.cargarMejoresResultados();
+    this.route.queryParams.subscribe(async params => {
+      this.dificultad = params['dificultad'] || '';
+      await this.cargarMejoresResultados();
+    });
   }
 
   async cargarMejoresResultados() {
@@ -21,6 +30,7 @@ export class RecordsPage implements OnInit {
       .getCliente()
       .from('resultados_memoria')
       .select('*')
+      .eq('dificultad', this.dificultad)
       .order('tiempo', { ascending: true })
       .limit(5);
 
@@ -38,5 +48,9 @@ export class RecordsPage implements OnInit {
 
   formatearFecha(fecha: string): string {
     return new Date(fecha).toLocaleString();
+  }
+
+  volverAInicio() {
+    this.router.navigate(['/home']);
   }
 }
