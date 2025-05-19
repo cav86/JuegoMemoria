@@ -1,0 +1,31 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Seleccionar Dificultad</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding">
+  <ion-grid>
+    <ion-row>
+      <ion-col>
+        <ion-button expand="block" color="success" (click)="empezarJuego('facil')">
+          Fácil (3 pares - Animales)
+        </ion-button>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col>
+        <ion-button expand="block" color="warning" (click)="empezarJuego('medio')">
+          Medio (5 pares - Herramientas)
+        </ion-button>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col>
+        <ion-button expand="block" color="danger" (click)="empezarJuego('dificil')">
+          Difícil (8 pares - Frutas)
+        </ion-button>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+</ion-content>
