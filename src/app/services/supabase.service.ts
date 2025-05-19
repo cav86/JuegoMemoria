@@ -43,6 +43,29 @@ export class SupabaseService {
     this.usuarioActual = usuario;
   }
 
+  // Inserta un nuevo resultado del juego
+async insertarResultado(resultado: {
+  email: string;
+  dificultad: string;
+  tiempo: number;
+  fecha: string;
+}) {
+  const { data, error } = await this.supabase
+    .from('resultados_memoria') // <-- asegurate que tu tabla se llame así
+    .insert([resultado]);
+
+  if (error) {
+    console.error('Error al insertar resultado:', error.message);
+    throw error;
+  }
+
+  return data;
+}
+
+  getCliente() {
+  return this.supabase;
+}
+
   // Obtener usuario actual
   async getUsuario() {
     if (!this.usuarioActual) {

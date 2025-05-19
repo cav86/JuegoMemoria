@@ -1,0 +1,19 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Juego de Memoria - {{ nivel | titlecase }}</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <div class="timer">⏱️ Tiempo: {{ tiempo }} segundos</div>
+  <div class="grilla">
+    <div
+      class="carta"
+      *ngFor="let carta of cartas"
+      [class.visible]="carta.visible || carta.encontrada"
+      (click)="seleccionar(carta)"
+    >
+      {{ (carta.visible || carta.encontrada) ? carta.imagen : '❓' }}
+    </div>
+  </div>
+</ion-content>

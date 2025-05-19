@@ -1,0 +1,21 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>🏆 Mejores Tiempos</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding">
+  <ion-list *ngIf="resultados.length > 0">
+    <ion-item *ngFor="let r of resultados">
+      <ion-label>
+        <h2>{{ obtenerNombre(r.email) }} ({{ r.dificultad }})</h2>
+        <p>Tiempo: {{ r.tiempo }} segundos</p>
+        <p>Fecha: {{ formatearFecha(r.fecha) }}</p>
+      </ion-label>
+    </ion-item>
+  </ion-list>
+
+  <ion-text *ngIf="resultados.length === 0">
+    No hay registros aún.
+  </ion-text>
+</ion-content>

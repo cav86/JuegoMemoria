@@ -1,0 +1,25 @@
+.grilla {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(60px, 1fr));
+  gap: 10px;
+  padding: 10px;
+}
+
+.carta {
+  font-size: 2rem;
+  background: #eee;
+  border-radius: 8px;
+  text-align: center;
+  padding: 10px;
+  cursor: pointer;
+}
+
+.carta.visible {
+  background: #fffacd;
+}
+
+.timer {
+  text-align: center;
+  font-weight: bold;
+  margin: 10px 0;
+}
