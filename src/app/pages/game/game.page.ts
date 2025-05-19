@@ -28,29 +28,44 @@ export class GamePage implements OnInit {
   }
 
   iniciarJuego() {
-    // Determinar cantidad de pares e imágenes según nivel
-    if (this.nivel === 'facil') {
-      this.paresTotales = 3;
-      this.imagenes = ['🐶', '🐱', '🐭'];
-    } else if (this.nivel === 'medio') {
-      this.paresTotales = 5;
-      this.imagenes = ['🔧', '🔨', '🪛', '🛠️', '⛏️'];
-    } else {
-      this.paresTotales = 8;
-      this.imagenes = ['🍎', '🍌', '🍇', '🍉', '🍊', '🍓', '🥝', '🍍'];
-    }
-
-    // Crear y mezclar cartas
-    this.cartas = [...this.imagenes, ...this.imagenes]
-      .map(img => ({ imagen: img, visible: false, encontrada: false }))
-      .sort(() => Math.random() - 0.5);
-
-    // Iniciar timer
-    this.tiempo = 0;
-    this.intervalo = setInterval(() => {
-      this.tiempo++;
-    }, 1000);
+  if (this.nivel === 'facil') {
+    this.paresTotales = 3;
+    this.imagenes = [
+      'assets/img/animales/perro.png',
+      'assets/img/animales/gato.png',
+      'assets/img/animales/pajaro.png'
+    ];
+  } else if (this.nivel === 'medio') {
+    this.paresTotales = 5;
+    this.imagenes = [
+      'assets/img/herramientas/martillo.png',
+      'assets/img/herramientas/destornillador.png',
+      'assets/img/herramientas/llave-inglesa.png',
+      'assets/img/herramientas/pico.png',
+      'assets/img/herramientas/pala.png'
+    ];
+  } else {
+    this.paresTotales = 8;
+    this.imagenes = [
+      'assets/img/frutas/manzana.png',
+      'assets/img/frutas/banana.png',
+      'assets/img/frutas/uvas.png',
+      'assets/img/frutas/sandia.png',
+      'assets/img/frutas/guayaba.png',
+      'assets/img/frutas/palta.png',
+      'assets/img/frutas/limon.png',
+      'assets/img/frutas/anana.png'
+    ];
   }
+
+  this.cartas = [...this.imagenes, ...this.imagenes]
+    .map(img => ({ imagen: img, visible: false, encontrada: false }))
+    .sort(() => Math.random() - 0.5);
+
+  this.tiempo = 0;
+  this.intervalo = setInterval(() => this.tiempo++, 1000);
+}
+
 
   seleccionar(carta: any) {
     if (carta.visible || carta.encontrada || this.seleccionadas.length >= 2) return;

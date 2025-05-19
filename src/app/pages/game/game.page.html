@@ -13,7 +13,9 @@
       [class.visible]="carta.visible || carta.encontrada"
       (click)="seleccionar(carta)"
     >
-      {{ (carta.visible || carta.encontrada) ? carta.imagen : '❓' }}
+      <img *ngIf="carta.visible || carta.encontrada" [src]="carta.imagen" />
+      <img *ngIf="!(carta.visible || carta.encontrada)" src="assets/img/question.png" />
+
     </div>
   </div>
 </ion-content>
